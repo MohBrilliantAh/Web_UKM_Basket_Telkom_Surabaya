@@ -1,20 +1,27 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UKM Basket Telkom - Official Website</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    
+
     <style>
         /* --- CUSTOM COLOR PALETTE --- */
         :root {
-            --ukm-gold: #c5a064; 
-            --ukm-gold-dark: #a88650; 
+            --ukm-gold: #c5a064;
+            --ukm-gold-dark: #a88650;
         }
 
-        .text-gold { color: var(--ukm-gold) !important; }
+        .text-gold {
+            color: var(--ukm-gold) !important;
+        }
+
+        .text-justify {
+            text-align: justify;
+        }
 
         /* Button Gold */
         .btn-gold {
@@ -23,6 +30,7 @@
             border: none;
             font-weight: 500;
         }
+
         .btn-gold:hover {
             background-color: var(--ukm-gold-dark);
             color: white;
@@ -32,14 +40,43 @@
         .header-bg {
             background-color: #f8f9fa;
             padding: 80px 0 40px 0;
-            border-bottom: 4px solid var(--ukm-gold); 
+            border-bottom: 4px solid var(--ukm-gold);
         }
 
+        .header-bg {
+            background: url('images/logo/ORIGINAL.png') center/cover no-repeat;
+            padding: 80px 0;
+            /* agar teks punya ruang tinggi */
+            color: white;
+            /* agar teks terlihat kontras */
+            position: relative;
+        }
+
+        .header-bg::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.35);
+            /* overlay gelap biar teks makin jelas */
+            z-index: 1;
+        }
+
+        .header-bg .container {
+            position: relative;
+            z-index: 2;
+            /* pastikan teks di atas overlay */
+        }
+
+
         /* --- STYLING TAB MENU (MANUAL) --- */
-        .nav-tabs { 
-            border-bottom: 2px solid #e9ecef; 
+        .nav-tabs {
+            border-bottom: 2px solid #e9ecef;
             cursor: pointer;
         }
+
         .nav-link {
             color: #6c757d;
             border: none !important;
@@ -47,19 +84,21 @@
             padding: 15px 20px;
             background: transparent;
         }
+
         /* Saat Tab Aktif */
         .nav-link.active-tab {
             color: var(--ukm-gold) !important;
-            border-bottom: 3px solid var(--ukm-gold) !important; 
+            border-bottom: 3px solid var(--ukm-gold) !important;
             background-color: transparent;
         }
-        
+
         /* Sidebar & Card Styling */
-        .sidebar-card, .card-ketua {
-             border: 1px solid #eaeaea !important;
-             background-color: #fff !important;
+        .sidebar-card,
+        .card-ketua {
+            border: 1px solid #eaeaea !important;
+            background-color: #fff !important;
         }
-        
+
         /* Placeholder Gambar */
         .img-placeholder {
             background-color: #e9ecef;
@@ -74,29 +113,50 @@
 
         /* --- LOGIKA TAMPILAN KONTEN --- */
         .konten-halaman {
-            display: none; /* Default sembunyi */
+            display: none;
+            /* Default sembunyi */
             animation: fadeIn 0.5s;
         }
+
         .konten-halaman.tampil {
-            display: block; /* Hanya tampil jika ada class ini */
+            display: block;
+            /* Hanya tampil jika ada class ini */
         }
 
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: .25rem;
+            /* mengikuti class rounded */
+            box-shadow: 0 .125rem .25rem rgba(0, 0, 0, 0.075);
+            /* mengikuti shadow-sm */
+        }
+
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* --- FOOTER --- */
         footer {
             background-color: #1a1a1a;
             color: #b0b0b0;
-            margin-top: 100px; 
+            margin-top: 100px;
         }
+
         footer h5 {
             color: white;
             font-weight: bold;
             margin-bottom: 20px;
         }
+
         footer a {
             text-decoration: none;
             color: #b0b0b0;
@@ -104,23 +164,26 @@
             display: block;
             margin-bottom: 10px;
         }
+
         footer a:hover {
             color: var(--ukm-gold);
             padding-left: 5px;
         }
+
         .footer-bottom {
             background-color: #111;
             border-top: 1px solid #333;
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
                 <img src="images/logo/ORIGINAL.png" alt="Logo UKM" height="50" class="me-2">
-                
+
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -158,52 +221,101 @@
     </header>
 
     <div class="container my-5">
-        
+
         <ul class="nav nav-tabs justify-content-center justify-content-md-start mb-4">
-            <li class="nav-item"><a class="nav-link active-tab" id="btn-sejarah" onclick="pindahTab('sejarah')">Sejarah</a></li>
-            <li class="nav-item"><a class="nav-link" id="btn-visimisi" onclick="pindahTab('visimisi')">Visi & Misi</a></li>
-            <li class="nav-item"><a class="nav-link" id="btn-struktur" onclick="pindahTab('struktur')">Struktur Org</a></li>
+            <li class="nav-item"><a class="nav-link active-tab" id="btn-sejarah"
+                    onclick="pindahTab('sejarah')">Sejarah</a></li>
+            <li class="nav-item"><a class="nav-link" id="btn-visimisi" onclick="pindahTab('visimisi')">Visi & Misi</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" id="btn-struktur" onclick="pindahTab('struktur')">Struktur Org</a>
+            </li>
             <li class="nav-item"><a class="nav-link" id="btn-catalog" onclick="pindahTab('catalog')">Catalog</a></li>
-            <li class="nav-item"><a class="nav-link" id="btn-jadwal" onclick="pindahTab('jadwal')">Jadwal Latihan</a></li>
+            <li class="nav-item"><a class="nav-link" id="btn-jadwal" onclick="pindahTab('jadwal')">Jadwal Latihan</a>
+            </li>
             <li class="nav-item"><a class="nav-link" id="btn-lokasi" onclick="pindahTab('lokasi')">Lokasi</a></li>
-            <li class="nav-item"><a class="nav-link" id="btn-dokumentasi" onclick="pindahTab('dokumentasi')">Dokumentasi</a></li>
+            <li class="nav-item"><a class="nav-link" id="btn-dokumentasi"
+                    onclick="pindahTab('dokumentasi')">Dokumentasi</a></li>
         </ul>
 
         <div id="isi-sejarah" class="konten-halaman tampil">
             <div class="row g-5">
                 <div class="col-lg-8">
                     <h3 class="h3 fw-bold mb-3 border-start border-4 border-warning ps-3">Sejarah Kami</h3>
-                    <p class="text-secondary lh-lg mb-5">
-                        Didirikan pada tahun 2020, kami mengawali langkah dengan membangun sebuah komunitas basket di lingkungan Telkom University Surabaya. Seiring berjalannya waktu, inisiatif ini kami kembangkan secara konsisten hingga bertransformasi menjadi sebuah Unit Kegiatan Mahasiswa (UKM) yang resmi. Langkah ini bertujuan agar organisasi kami diakui oleh pihak kampus sebagai sarana utama dalam mewadahi kegiatan keolahragaan serta pengembangan prestasi bola basket di Telkom University Surabaya.
+                    <p class="text-secondary lh-lg mb-5 text-justify">
+                        Didirikan pada tahun 2020, kami mengawali langkah dengan membangun sebuah komunitas basket di
+                        lingkungan Telkom University Surabaya. Seiring berjalannya waktu, inisiatif ini kami kembangkan
+                        secara konsisten hingga bertransformasi menjadi sebuah Unit Kegiatan Mahasiswa (UKM) yang resmi.
+                        Langkah ini bertujuan agar organisasi kami diakui oleh pihak kampus sebagai sarana utama dalam
+                        mewadahi kegiatan keolahragaan serta pengembangan prestasi bola basket di Telkom University
+                        Surabaya.
 
                     <div class="mb-5">
-                        <h2 class="h3 mb-3 fw-bold text-dark border-start border-4 border-warning ps-3">Tentang UKM Basket Telkom Surabaya</h2>
-                        <p class="text-secondary lh-lg">
-                            UKM Basket Telkom University Surabaya merupakan organisasi kemahasiswaan resmi yang bergerak di bidang olahraga bola basket di bawah naungan universitas. Kami hadir sebagai wadah strategis bagi mahasiswa untuk menyalurkan minat dan bakat, sekaligus membangun karakter disiplin serta menjunjung tinggi nilai sportivitas. Melalui program pembinaan yang terstruktur, kami berkomitmen untuk mencetak atlet mahasiswa yang berprestasi dan mampu mengharumkan nama almamater di berbagai tingkat kompetisi.
+                        <h2 class="h3 mb-3 fw-bold text-dark border-start border-4 border-warning ps-3">Tentang UKM
+                            Basket Telkom Surabaya</h2>
+                        <p class="text-secondary text-justify lh-lg">
+                            UKM Basket Telkom University Surabaya merupakan organisasi kemahasiswaan resmi yang bergerak
+                            di bidang olahraga bola basket di bawah naungan universitas. Kami hadir sebagai wadah
+                            strategis bagi mahasiswa untuk menyalurkan minat dan bakat, sekaligus membangun karakter
+                            disiplin serta menjunjung tinggi nilai sportivitas. Melalui program pembinaan yang
+                            terstruktur, kami berkomitmen untuk mencetak atlet mahasiswa yang berprestasi dan mampu
+                            mengharumkan nama almamater di berbagai tingkat kompetisi.
                         </p>
                     </div>
 
                     <div>
-                        <h3 class="h3 mb-4 fw-bold border-start border-4 border-warning ps-3">Ketua UKM Basket dari Masa ke Masa</h3>
-                        
+                        <h3 class="h3 mb-4 fw-bold border-start border-4 border-warning ps-3">Ketua UKM Basket dari Masa
+                            ke Masa</h3>
+
                         <div class="card card-ketua mb-3 border-0 shadow-sm">
                             <div class="row g-0 align-items-center">
-                                <div class="col-md-3"><div class="img-placeholder" style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO ANDY</div></div>
-                                <div class="col-md-9"><div class="card-body"><h5 class="card-title fw-bold">Andy Ferdiansyah</h5><p class="card-text mb-1"><small class="text-gold fw-bold">Periode 2022 - 2023</small></p><p class="card-text text-muted small">Mahasiswa Angkatan 2020</p></div></div>
-                            </div>
-                        </div>
-                        
-                        <div class="card card-ketua mb-3 border-0 shadow-sm">
-                            <div class="row g-0 align-items-center">
-                                <div class="col-md-3"><div class="img-placeholder" style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO BRILLIANT</div></div>
-                                <div class="col-md-9"><div class="card-body"><h5 class="card-title fw-bold">Moch Brilliant Adrian H</h5><p class="card-text mb-1"><small class="text-gold fw-bold">Periode 2023 - 2025</small></p><p class="card-text text-muted small">Mahasiswa Angkatan 2023</p></div></div>
+                                <div class="col-md-3">
+                                    <div class="img-placeholder"
+                                        style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO ANDY</div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Andy Ferdiansyah</h5>
+                                        <p class="card-text mb-1"><small class="text-gold fw-bold">Periode 2022 -
+                                                2023</small></p>
+                                        <p class="card-text text-muted small">Mahasiswa Angkatan 2020</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="card card-ketua mb-3 border-0 shadow-sm">
                             <div class="row g-0 align-items-center">
-                                <div class="col-md-3"><div class="img-placeholder" style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO IBRA</div></div>
-                                <div class="col-md-9"><div class="card-body"><h5 class="card-title fw-bold">Ibrahimovic Paradise</h5><p class="card-text mb-1"><small class="text-success fw-bold">Periode 2025 - Sekarang</small></p><p class="card-text text-muted small">Mahasiswa Angkatan 2024</p></div></div>
+                                <div class="col-md-3">
+                                    <div class="img-placeholder"
+                                        style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO BRILLIANT
+
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Moch Brilliant Adrian H</h5>
+                                        <p class="card-text mb-1"><small class="text-gold fw-bold">Periode 2023 -
+                                                2025</small></p>
+                                        <p class="card-text text-muted small">Mahasiswa Angkatan 2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card card-ketua mb-3 border-0 shadow-sm">
+                            <div class="row g-0 align-items-center">
+                                <div class="col-md-3">
+                                    <div class="img-placeholder"
+                                        style="height: 120px; width: 100%; border-radius: 5px 0 0 5px;">FOTO IBRA</div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="card-body">
+                                        <h5 class="card-title fw-bold">Ibrahimovic Paradise</h5>
+                                        <p class="card-text mb-1"><small class="text-success fw-bold">Periode 2025 -
+                                                Sekarang</small></p>
+                                        <p class="card-text text-muted small">Mahasiswa Angkatan 2024</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -213,7 +325,8 @@
                     <div class="card sidebar-card shadow-sm mb-4">
                         <div class="card-body p-4">
                             <h4 class="card-title h5 fw-bold">Become The Next Champions!</h4>
-                            <p class="card-text text-secondary small my-3">Siapkan dirimu untuk seleksi fisik dan skill.</p>
+                            <p class="card-text text-secondary small my-3">Siapkan dirimu untuk seleksi fisik dan skill.
+                            </p>
                             <a href="#" class="btn btn-gold w-100 py-2 fw-bold">Info Pendaftaran</a>
                         </div>
                     </div>
@@ -221,7 +334,8 @@
                         <div class="card-body p-4">
                             <h4 class="card-title h5 fw-bold">Stay Updated</h4>
                             <p class="card-text text-secondary small my-3">Follow Instagram kami untuk live score.</p>
-                            <a href="https://www.instagram.com/basket.telkomsurabaya?igsh=bXkzMTlhNzVqc2c4" target="_blank" class="btn btn-outline-dark w-100 py-2">Follow Instagram</a>
+                            <a href="https://www.instagram.com/basket.telkomsurabaya?igsh=bXkzMTlhNzVqc2c4"
+                                target="_blank" class="btn btn-outline-dark w-100 py-2">Follow Instagram</a>
                         </div>
                     </div>
                 </div>
@@ -231,8 +345,9 @@
         <div id="isi-visimisi" class="konten-halaman">
             <div class="row">
                 <div class="col-md-6 mb-4">
-                     <h4 class="h5 fw-bold text-dark"><span class="text-gold me-2">#</span>Visi</h4>
-                     <p class="text-secondary">Menjadi UKM olahraga unggulan yang melahirkan talenta basket berkualitas.</p>
+                    <h4 class="h5 fw-bold text-dark"><span class="text-gold me-2">#</span>Visi</h4>
+                    <p class="text-secondary">Menjadi UKM olahraga unggulan yang melahirkan talenta basket berkualitas.
+                    </p>
                 </div>
                 <div class="col-md-6 mb-4">
                     <h4 class="h5 fw-bold text-dark"><span class="text-gold me-2">#</span>Misi</h4>
@@ -245,50 +360,53 @@
         </div>
 
         <div id="isi-struktur" class="konten-halaman">
-             <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Struktur Organisasi</h3>
-             
-             <div class="row justify-content-center mb-5">
+            <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Struktur Organisasi</h3>
+
+            <div class="row justify-content-center mb-5">
                 <div class="col-md-4 text-center">
                     <div class="img-placeholder rounded mb-2" style="height: 200px; width: 100%;">FOTO PEMBINA</div>
                     <h5 class="fw-bold m-0">Nama Pembina</h5>
                     <p class="text-muted small mb-1">Pembina UKM</p>
                     <p class="text-gold small fw-bold">NIP. 123456789</p>
                 </div>
-             </div>
+            </div>
 
-             <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-5">
                 <div class="col-md-4 text-center">
                     <div class="img-placeholder rounded mb-2" style="height: 200px; width: 100%;">FOTO HEAD COACH</div>
                     <h5 class="fw-bold m-0">Nama Head Coach</h5>
                     <p class="text-muted small mb-1">Kepala Pelatih</p>
                     <p class="text-gold small fw-bold">Licence No. A-12345</p>
                 </div>
-             </div>
+            </div>
 
-             <div class="row justify-content-center mb-5">
+            <div class="row justify-content-center mb-5">
                 <div class="col-md-4 text-center mb-3">
                     <div class="img-placeholder rounded mb-2" style="height: 200px; width: 100%;">FOTO KETUA</div>
-                    <h5 class="fw-bold m-0">Nama Ketua</h5><p class="text-muted small">Ketua Umum</p>
+                    <h5 class="fw-bold m-0">Nama Ketua</h5>
+                    <p class="text-muted small">Ketua Umum</p>
                 </div>
                 <div class="col-md-4 text-center mb-3">
                     <div class="img-placeholder rounded mb-2" style="height: 200px; width: 100%;">FOTO WAKIL</div>
-                    <h5 class="fw-bold m-0">Nama Wakil</h5><p class="text-muted small">Wakil Ketua</p>
+                    <h5 class="fw-bold m-0">Nama Wakil</h5>
+                    <p class="text-muted small">Wakil Ketua</p>
                 </div>
-             </div>
+            </div>
 
-             <div class="row">
+            <div class="row">
                 <div class="col-12">
                     <h5 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Bagan Organisasi Lengkap</h5>
-                    <div class="img-placeholder rounded" style="height: 400px; width: 100%;">GAMBAR BAGAN STRUKTUR ORGANISASI</div>
+                    <div class="img-placeholder rounded" style="height: 400px; width: 100%;">GAMBAR BAGAN STRUKTUR
+                        ORGANISASI</div>
                 </div>
-             </div>
+            </div>
         </div>
 
         <div id="isi-catalog" class="konten-halaman">
-             <h3 class="h4 fw-bold mb-4 border-start border-4 border-warning ps-3">Official Merchandise</h3>
-             <p class="text-muted mb-4">Dukung UKM Basket Telkom dengan membeli merchandise resmi kami.</p>
+            <h3 class="h4 fw-bold mb-4 border-start border-4 border-warning ps-3">Official Merchandise</h3>
+            <p class="text-muted mb-4">Dukung UKM Basket Telkom dengan membeli merchandise resmi kami.</p>
 
-             <div class="row g-4">
+            <div class="row g-4">
                 <div class="col-md-3 col-6">
                     <div class="card h-100 border-0 shadow-sm">
                         <div class="img-placeholder rounded-top" style="height: 250px; width: 100%;">FOTO JERSEY</div>
@@ -329,66 +447,103 @@
                         </div>
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
 
         <div id="isi-jadwal" class="konten-halaman">
-             <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Jadwal Latihan Rutin</h3>
-             <div class="table-responsive mt-3">
+            <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Jadwal Latihan Rutin</h3>
+            <div class="table-responsive mt-3">
                 <table class="table table-bordered border-light table-hover">
-                    <thead class="bg-light"><tr><th>Hari</th><th>Waktu</th><th>Fokus</th></tr></thead>
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Hari</th>
+                            <th>Waktu</th>
+                            <th>Fokus</th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr><td>Senin</td><td>18:30 - 21:00</td><td>Physical</td></tr>
-                        <tr><td>Kamis</td><td>18:30 - 21:00</td><td>Tactical</td></tr>
+                        <tr>
+                            <td>Senin</td>
+                            <td>18:30 - 21:00</td>
+                            <td>Physical</td>
+                        </tr>
+                        <tr>
+                            <td>Kamis</td>
+                            <td>18:30 - 21:00</td>
+                            <td>Tactical</td>
+                        </tr>
                     </tbody>
                 </table>
-             </div>
+            </div>
         </div>
 
         <div id="isi-lokasi" class="konten-halaman">
-    <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Home Base</h3>
-    
-    <div class="ratio ratio-16x9 border shadow-sm rounded overflow-hidden">
-       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3765624670796!2d112.72645217330874!3d-7.311525092696408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00639ad157%3A0x8c8f71b536ccddfc!2sLapangan%20Hybrid%20Telkom%20University%20Surabaya!5e0!3m2!1sid!2sid!4v1764551469035!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    
-    <p class="mt-3 text-muted small">
-        <i class="bi bi-geo-alt-fill text-danger me-1"></i> 
-        <strong>Alamat:</strong> Jl. Ketintang No.156, Kec. Gayungan, Surabaya.
-    </p>
-</div>
+            <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Home Base</h3>
+
+            <div class="ratio ratio-16x9 border shadow-sm rounded overflow-hidden">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.3765624670796!2d112.72645217330874!3d-7.311525092696408!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb00639ad157%3A0x8c8f71b536ccddfc!2sLapangan%20Hybrid%20Telkom%20University%20Surabaya!5e0!3m2!1sid!2sid!4v1764551469035!5m2!1sid!2sid"
+                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <p class="mt-3 text-muted small">
+                <i class="bi bi-geo-alt-fill text-danger me-1"></i>
+                <strong>Alamat:</strong> Jl. Ketintang No.156, Kec. Gayungan, Surabaya.
+            </p>
+        </div>
 
         <div id="isi-dokumentasi" class="konten-halaman">
             <div class="mb-5">
-                <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Piala Rektor (2024)</h3>
+                <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">ITS BASKETBALL LEAGUE (2024)</h3>
                 <p class="text-muted mb-3">Dokumentasi kegiatan kompetisi pertama.</p>
                 <div class="row g-3">
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 1</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 2</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 3</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 4</div></div>
+                    <div class="col-md-6">
+                        <img src="images/dokum/its-cup-1.jpg" alt="Foto 1" class="gallery-img">
+                    </div>
+                    <div class="col-md-6">
+                        <img src="images/dokum/its-cup-2.jpg" alt="Foto 2" class="gallery-img">
+                    </div>
+                     <div class="col-md-6">
+                        <div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">BANTU CARIIN DONG 🥺</div>
+                    </div>
+                     <div class="col-md-6">
+                        <div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">BANTU CARIIN DONG 🥺 </div>
+                    </div>
                 </div>
+
             </div>
             <hr class="my-5 opacity-25">
             <div class="mb-5">
-                <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3">Liga Mahasiswa Regional (2024)</h3>
+                <h3 class="h4 fw-bold mb-3 border-start border-4 border-warning ps-3"> VCOM </h3>
                 <p class="text-muted mb-3">Dokumentasi kegiatan kompetisi kedua.</p>
                 <div class="row g-3">
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 1</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 2</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 3</div></div>
-                    <div class="col-md-6"><div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">FOTO 4</div></div>
+                    <div class="col-md-6">
+                        <img src="images/dokum/WhatsApp Image 2025-12-10 at 7.33.19 PM.jpeg" alt="Foto 1" class="gallery-img ">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">BANTU CARIIN DONG 🥺</div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">BANTU CARIIN DONG 🥺 </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="img-placeholder rounded shadow-sm" style="height: 300px; width: 100%;">BANTU CARIIN DONG 🥺</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-    </div> <footer class="pt-5 pb-3">
+    </div>
+    <footer class="pt-5 pb-3">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-5">
                     <h5 class="text-gold border-start border-4 border-warning ps-3 mb-4">UKM Basket Telkom</h5>
-                    <p class="small lh-lg">Membangun karakter juara melalui olahraga basket.<br>Bergabunglah dengan kami dan jadilah bagian dari sejarah prestasi kampus.</p>
-                    <p class="mt-4 small"><strong>Markas:</strong><br>GOR Telkom University Surabaya<br>Jl. Ketintang No.156, Surabaya.</p>
+                    <p class="small lh-lg">Membangun karakter juara melalui olahraga basket.<br>Bergabunglah dengan kami
+                        dan jadilah bagian dari sejarah prestasi kampus.</p>
+                    <p class="mt-4 small"><strong>Markas:</strong><br>GOR Telkom University Surabaya<br>Jl. Ketintang
+                        No.156, Surabaya.</p>
                 </div>
                 <div class="col-lg-3">
                     <h5 class="text-white mb-4">Akses Cepat</h5>
@@ -402,14 +557,18 @@
                 <div class="col-lg-4">
                     <h5 class="text-white mb-4">Hubungi Kami</h5>
                     <p class="small">Punya pertanyaan seputar rekrutmen atau jadwal sparring?</p>
-                    <a href="https://www.instagram.com/basket.telkomsurabaya?igsh=bXkzMTlhNzVqc2c4" target="_blank" class="d-flex align-items-center mb-2"><i class="bi bi-instagram me-2 text-gold"></i> @ukmbaskettelkom</a>
-                    <a href="#" class="d-flex align-items-center mb-2"><i class="bi bi-envelope me-2 text-gold"></i> basket@telkomuniversity.ac.id</a>
-                    <a href="#" class="d-flex align-items-center"><i class="bi bi-whatsapp me-2 text-gold"></i> +62 812-3456-7890 (Humas)</a>
+                    <a href="https://www.instagram.com/basket.telkomsurabaya?igsh=bXkzMTlhNzVqc2c4" target="_blank"
+                        class="d-flex align-items-center mb-2"><i class="bi bi-instagram me-2 text-gold"></i>
+                        @ukmbaskettelkom</a>
+                    <a href="#" class="d-flex align-items-center mb-2"><i class="bi bi-envelope me-2 text-gold"></i>
+                        basket@telkomuniversity.ac.id</a>
+                    <a href="#" class="d-flex align-items-center"><i class="bi bi-whatsapp me-2 text-gold"></i> +62
+                        812-3456-7890 (Humas)</a>
                 </div>
             </div>
-            
+
             <hr class="border-secondary mt-5">
-            
+
             <div class="text-center pt-3">
                 <small class="text-muted">&copy; 2025 UKM Bola Basket Telkom University. All rights reserved.</small>
             </div>
@@ -419,19 +578,20 @@
     <script>
         function pindahTab(namaID) {
             var semuaKonten = document.querySelectorAll('.konten-halaman');
-            semuaKonten.forEach(function(el) { el.classList.remove('tampil'); });
+            semuaKonten.forEach(function (el) { el.classList.remove('tampil'); });
 
             var semuaTombol = document.querySelectorAll('.nav-link');
-            semuaTombol.forEach(function(btn) { btn.classList.remove('active-tab'); });
+            semuaTombol.forEach(function (btn) { btn.classList.remove('active-tab'); });
 
             var targetKonten = document.getElementById('isi-' + namaID);
-            if(targetKonten) { targetKonten.classList.add('tampil'); }
+            if (targetKonten) { targetKonten.classList.add('tampil'); }
 
             var targetTombol = document.getElementById('btn-' + namaID);
-            if(targetTombol) { targetTombol.classList.add('active-tab'); }
+            if (targetTombol) { targetTombol.classList.add('active-tab'); }
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
     </script>
 </body>
+
 </html>
